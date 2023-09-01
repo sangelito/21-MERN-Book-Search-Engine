@@ -6,13 +6,19 @@ import {
   Row,
   Col
 } from 'react-bootstrap';
+import { useQuery, useMutation } from "@apollo/client";
 
-import { getMe, deleteBook } from '../utils/API';
+import { GET_ME } from "../utils/queries";
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
+import { REMOVE_BOOK } from "../utils/mutations";
 
 const SavedBooks = () => {
-  const [userData, setUserData] = useState({});
+  const { loading, data } = useQuery(GET_ME);
+
+  const userData = data?.me;
+ 
+  const [deleteBook] = useMutation(REMOVE_BOOK);
 
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
