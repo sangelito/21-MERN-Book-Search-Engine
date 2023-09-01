@@ -5,4 +5,4 @@
 
 // module.exports = router;
 
-module.exports = { resolvers, typeDefs };
+// module.exports = { resolvers, typeDefs };
